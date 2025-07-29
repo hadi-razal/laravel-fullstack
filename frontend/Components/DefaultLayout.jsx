@@ -1,19 +1,48 @@
-import { Navigate, Outlet } from 'react-router-dom'
-import {  userStateContext } from '../contexts/contextProvider';
+import { Link, Navigate, Outlet } from 'react-router-dom'
+import { userStateContext } from '../contexts/contextProvider';
 
 const DefaultLayout = () => {
 
-  const { user ,token} = userStateContext();
+  const { user, token } = userStateContext();
 
-  if(!token) {
-    return <Navigate to="/login"  />
+  if (!token) {
+    return <Navigate to="/login" />
+  }
+
+
+  const OnlogOut = () => {
+    console.log("How are you doing?");
   }
 
   return (
-    <div>
-      <h1>Default Layout</h1>
-      <p>This layout is for authenticated users.</p>
-      <Outlet/>
+    <div id="defaultLayout">
+      <aside>
+        <Link to="/dashboard">Users</Link>
+        <Link to="/users">Create User</Link>
+      </aside>
+
+      <div className='content'>
+        <header>
+          <div>
+            Header
+
+          </div>
+
+          <div>
+
+            {user?.name}
+
+            <a href="#" onClick={OnlogOut} className='btn-logout'>LogOut</a>
+
+          </div>
+        </header>
+
+        <main>
+          <Outlet />
+        </main>
+
+      </div>
+
     </div>
   )
 }

@@ -5,6 +5,7 @@ import Users from '../View/Users';
 import NotFound from '../View/NotFound';
 import DefaultLayout from '../Components/DefaultLayout';
 import GuestLayout from '../Components/GuestLayout';
+import Dashboard from '../View/Dashboard';
 
 const router = createBrowserRouter([
 
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
             {
                 path: '/users',
                 element: <Users />,
+            },
+            {
+                path: '/dashboard',
+                element: <Dashboard />,
             }
         ]
     },

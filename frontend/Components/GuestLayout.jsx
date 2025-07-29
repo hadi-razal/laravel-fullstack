@@ -1,11 +1,11 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { userStateContext } from '../contexts/contextProvider';
 
 const GuestLayout = () => {
 
 
-  const { user, token } = userStateContext();
+  const { token } = userStateContext();
 
   if (token) {
     return <Navigate to="/users" replace />
