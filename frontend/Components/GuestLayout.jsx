@@ -14,7 +14,6 @@ const GuestLayout = () => {
 
   return (
     <div>
-      <h1>For guest users only</h1>
       <Outlet />
     </div>
   )
