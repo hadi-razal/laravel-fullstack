@@ -1,5 +1,7 @@
-import React, { useRef } from 'react'
+import  { useRef } from 'react'
 import { Link } from 'react-router-dom';
+import AxiosClient from '../axiosClient';
+import { userStateContext } from '../contexts/contextProvider';
 
 const Register = () => {
 
@@ -8,7 +10,7 @@ const Register = () => {
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
 
-
+  const {setUser,setToken} = userStateContext()
 
 
   const onSubmit = (e) => {
@@ -19,8 +21,27 @@ const Register = () => {
       name: nameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
-      confirmPassword: confirmPasswordRef.current.value
+      confirm_Password: confirmPasswordRef.current.value
     };
+
+    console.log(payload)
+
+    AxiosClient.post('/register', payload)
+
+
+      .then(({ data }) => {
+        console.log("Registration successful", response.data);
+
+        if(data.user) {
+          setUser(data.user);
+          setToken(data.token);
+          localStorage.setItem('token', data.token);
+        }
+
+      }).catch(error => {
+        console.error("Registration failed", error);
+        alert("Registration failed. Please try again.");
+      })
 
   }
 

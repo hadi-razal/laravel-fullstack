@@ -7,6 +7,7 @@ function App() {
     
       <div>
         <h1>This is my Laravel App</h1>
+        <h1>This is my Laravel App</h1>
       </div>
         
     

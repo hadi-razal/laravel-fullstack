@@ -11,40 +11,41 @@ const DefaultLayout = () => {
 
 
   const OnlogOut = () => {
-    console.log("How are you doing?");
+        console.log("How are you doing?");
   }
 
-  return (
-    <div id="defaultLayout">
-      <aside>
-        <Link to="/dashboard">Users</Link>
-        <Link to="/users">Create User</Link>
-      </aside>
+      return (
+      <div id="defaultLayout">
+        <aside>
+          <Link to="/dashboard">Users</Link>
+          <Link to="/users">Create User</Link>
+        </aside>
 
-      <div className='content'>
-        <header>
-          <div>
-            Header
+        <div className='content'>
+          <header>
+            <div>
 
-          </div>
+              Header
 
-          <div>
+            </div>
 
-            {user?.name}
+            <div>
 
-            <a href="#" onClick={OnlogOut} className='btn-logout'>LogOut</a>
+              {user?.name}
 
-          </div>
-        </header>
+              <a href="#" onClick={OnlogOut} className='btn-logout'>LogOut</a>
 
-        <main>
-          <Outlet />
-        </main>
+            </div>
+          </header>
+
+          <main>
+            <Outlet />
+          </main>
+
+        </div>
 
       </div>
-
-    </div>
-  )
+      )
 }
 
-export default DefaultLayout
+      export default DefaultLayout
