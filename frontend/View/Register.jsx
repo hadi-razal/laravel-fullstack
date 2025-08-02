@@ -14,36 +14,34 @@ const Register = () => {
 
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
+  e.preventDefault();
+  console.log("Form submitted");
 
-    const payload = {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      confirm_Password: confirmPasswordRef.current.value
-    };
+  const payload = {
+    name: nameRef.current.value,
+    email: emailRef.current.value,
+    password: passwordRef.current.value,
+    password_confirmation: confirmPasswordRef.current.value, // fixed key
+  };
 
-    console.log(payload)
+  console.log(payload);
 
-    AxiosClient.post('/register', payload)
+  AxiosClient.post('/register', payload)
+    .then(({ data }) => {
+      console.log("Registration successful", data); // fixed here
 
+      if (data.user) {
+        setUser(data.user);
+        setToken(data.token);
+        localStorage.setItem('token', data.token);
+      }
+    })
+    .catch(error => {
+      console.error("Registration failed", error);
+      alert("Registration failed. Please try again.");
+    });
+};
 
-      .then(({ data }) => {
-        console.log("Registration successful", response.data);
-
-        if(data.user) {
-          setUser(data.user);
-          setToken(data.token);
-          localStorage.setItem('token', data.token);
-        }
-
-      }).catch(error => {
-        console.error("Registration failed", error);
-        alert("Registration failed. Please try again.");
-      })
-
-  }
 
 
   return (
