@@ -15,9 +15,8 @@ class AuthController extends Controller
 
     
     {
-         echo "Registering user with data";
         
-         $data = $request->validated();
+        $data = $request->validated();
 
         $user = User::create([
             'name' => $data['name'],
@@ -27,8 +26,14 @@ class AuthController extends Controller
 
         $token = $user->createToken('main')->plainTextToken;
 
-        return response(compact('user', 'token'), 201);
+       return response()->json([
+        'user' => $user,
+        'token' => $token
+    ], 201);
+    
     }
+
+
 
     public function login(LoginRequest $request)
     {
