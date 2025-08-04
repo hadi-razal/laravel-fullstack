@@ -13,9 +13,11 @@ const Register = () => {
   const {setUser,setToken} = userStateContext()
 
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
   e.preventDefault();
   console.log("Form submitted");
+
+  await AxiosClient.get('/sanctum/csrf-cookie');
 
   const payload = {
     name: nameRef.current.value,
@@ -35,6 +37,7 @@ const Register = () => {
         setToken(data.token);
         localStorage.setItem('token', data.token);
       }
+
     })
     .catch(error => {
       console.error("Registration failed", error);

@@ -12,8 +12,12 @@ use App\Http\Requests\RegisterRequest;
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
+
+    
     {
-        $data = $request->validated();
+         echo "Registering user with data";
+        
+         $data = $request->validated();
 
         $user = User::create([
             'name' => $data['name'],

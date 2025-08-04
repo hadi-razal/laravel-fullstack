@@ -141,7 +141,7 @@ return [
     | be regarded as available. Typically, this will be the root path of
     | your application, but you're free to change this when necessary.
     |
-    */
+    *
 
     'path' => env('SESSION_PATH', '/'),
 
@@ -156,7 +156,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    'domain' => env('SESSION_DOMAIN', ''),
 
     /*
     |--------------------------------------------------------------------------
